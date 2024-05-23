@@ -9,6 +9,7 @@
     --container-border: #d1d1d1;
 }
 
+
 /* Body styles */
 body {
     margin: 0;
@@ -28,24 +29,15 @@ body {
     flex-direction: column;
 }
 
-/* Text inside the card */
-.card-text {
-    display: flex;
-    color: rgba(254, 254, 254, 0.9);
-    font-size: 2em; /* Adjust the font size as needed */
-    text-align: center;
-    z-index: 1; /* Ensure the text is above other elements */
-}
-
+/* Card */
 .card {
     height: 500px;
     width: 350px;
     display: grid;
     place-items: center;
     position: relative;
-    border-radius: 10px;
+    border-radius: 0px;
     cursor: pointer;
-    background-color: #222;
     overflow: hidden;
 }
 
@@ -54,7 +46,7 @@ body {
     content: '';
     width: 50%;
     height: 180%;
-    background-color: #fff;
+    background-color:rgba(250, 225, 116);
     transform: rotate(45deg);
 }
 
@@ -62,6 +54,25 @@ body {
     animation: animate 2s linear infinite;
 }
 
+.card::after {
+    position: absolute;
+    content: '';
+    inset: 5px;
+    background-image: url(./images/card.webp);
+    background-position: center;
+    border-radius: 8px;
+}
+
+/* Text inside the card */
+.card-text {
+    display: flex;
+    color: rgba(254, 254, 254, 0.9);
+    font-size: 2em; 
+    text-align: center;
+    z-index: 1;
+}
+
+/* Card  Animation*/
 @keyframes animate {
     from {
         transform: rotate(0deg);
@@ -71,12 +82,41 @@ body {
     }
 }
 
-.card::after {
-    position: absolute;
-    content: '';
-    inset: 5px;
-    background: #222;
-    border-radius: 8px;
+
+/* Sidebar styles */
+#sideBar {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    top: 5px;
+    left: 5px;
+    color: rgb(206, 46, 128);
+    padding: 0 0 0 30px;
+    transition: width 0.3s ease-in-out, 
+                background-color 0.3s ease-in-out, 
+                color 0.3s ease-in-out, padding 0.3s ease-in-out;
+    width: 20px;
+    height: 30px;
+    overflow: hidden;
+    font-size: 11px;
+}
+
+#sideBar:hover {
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding-left: 30px;
+    border-radius: 0 0 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+#helpIcon {
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 /* Styled link styles */
@@ -91,6 +131,22 @@ body {
 
 .styled-link:hover {
     color: #ffffff;
+}
+
+/* Button styles */
+button {
+    font-size: .9rem;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
+    border: 1px solid var(--container-border);
+    background-color: var(--background-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    color: var(--background-color);
+    background-color: var(--text-color);
 }
 
 /* Footer styles */
@@ -117,18 +173,19 @@ footer a:hover {
     color: #ffffff; /* Change color on hover */
 }
 
-/* Button styles */
-button {
-    font-size: .9rem;
-    padding: 10px;
-    margin: 20px;
-    border-radius: 5px;
-    border: 1px solid var(--container-border);
-    background-color: var(--background-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-button:hover {
-    color: var(--background-color);
-    background-color: var(--text-color);
+/* Circular number */
+.number-circle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5); /* Add shadow effect */
 }

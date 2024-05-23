@@ -57,8 +57,15 @@ function cardCreator(currentPosition) {
     cardText.classList.add('card-text');
     cardText.textContent = numberToOrdinal(currentPosition);  // Set card text
 
-    card.appendChild(cardText);  // Append text to card
-    container.appendChild(card);  // Append card to container
+    card.appendChild(cardText);
+
+    // Create and append the circular number element
+    const numberCircle = document.createElement('div');
+    numberCircle.classList.add('number-circle');
+    numberCircle.textContent = currentPosition;
+    card.appendChild(numberCircle);
+
+    container.appendChild(card);
 }
 
 // Function to convert a number to its ordinal form.
@@ -95,6 +102,7 @@ function toggleMusic() {
     console.log(isMuted ? "Music stoped" : "Music resumed");
 }
 
+// Function to restart game.
 function restartGame() {
     location.reload();
 }

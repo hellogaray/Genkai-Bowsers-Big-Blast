@@ -44,7 +44,14 @@ function blastSelector() {
 
 // Function to create and display a card with the current position.
 function cardCreator(currentPosition) {
-    card.textContent = numberToOrdinal(currentPosition);  // Set card text
+    const card = document.createElement('div');
+    card.classList.add('card');
+    
+    const cardText = document.createElement('div');
+    cardText.classList.add('card-text');
+    cardText.textContent = numberToOrdinal(currentPosition);  // Set card text
+
+    card.appendChild(cardText);  // Append text to card
     container.appendChild(card);  // Append card to container
 }
 

@@ -28,16 +28,54 @@ body {
     flex-direction: column;
 }
 
+/* Text inside the card */
+.card-text {
+    color: rgba(254, 254, 254, 0.9);
+    font-size: 2em; /* Adjust the font size as needed */
+    text-align: center;
+    z-index: 1; /* Ensure the text is above other elements */
+}
+
 .card {
-    display: flex;
-    width: 250px;
-    height: 400px;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid var(--border-color);
+    height: 500px;
+    width: 350px;
+    display: grid;
+    place-items: center;
+    position: relative;
     border-radius: 10px;
-    background-color: var(--background-color);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    background-color: #222;
+    overflow: hidden;
+}
+
+.card::before {
+    position: absolute;
+    content: '';
+    width: 50%;
+    height: 180%;
+    background-color: #fff;
+    transform: rotate(45deg);
+}
+
+.card::before {
+    animation: animate 2s linear infinite;
+}
+
+@keyframes animate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.card::after {
+    position: absolute;
+    content: '';
+    inset: 5px;
+    background: #222;
+    border-radius: 8px;
 }
 
 /* Styled link styles */

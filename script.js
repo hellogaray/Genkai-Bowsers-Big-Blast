@@ -12,7 +12,6 @@ let bigBlast = blastSelector(), // Generate initial blast position
 // Event Listeners
 document.getElementById("nextBtn").addEventListener("click", bombFinder);
 document.addEventListener("keydown", togglePause);  // Listen for 'P' key press
-document.addEventListener("keydown", toggleMusic);  // Listen for 'M' key press
 
 // Initial card setup
 card.classList.add("card");
@@ -75,20 +74,30 @@ function numberToOrdinal(n) {
 function togglePause(event) {
     if (event.key.toLowerCase() === 'p') {
         isPaused = !isPaused;
+        isMuted = !isMuted;
+        toggleMusic()
         console.log(isPaused ? "Game paused" : "Game resumed");
+    } else if (event.key.toLowerCase() === 'm') {
+        toggleMusic()
+    } else if (event.key.toLowerCase() === 'r') {
+        restartGame()
     }
 }
 
-function toggleMusic(event) {
-    if (event.key.toLowerCase() === 'm') {
-        isMuted = !isMuted;
-        if (themeSong.paused) {
-            themeSong.play();
-        } else {
-            themeSong.pause();
-        }
-        console.log(isMuted ? "Music stoped" : "Music resumed");
+// Function to toggle the music state.
+function toggleMusic() {
+    isMuted = !isMuted;
+    if (themeSong.paused) {
+        themeSong.play();
+    } else {
+        themeSong.pause();
     }
+    console.log(isMuted ? "Music stoped" : "Music resumed");
 }
+
+function restartGame() {
+    location.reload();
+}
+
 themeSong.loop = true
 themeSong.play()

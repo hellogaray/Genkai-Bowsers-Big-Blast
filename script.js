@@ -57,12 +57,16 @@ function cardCreator(currentPosition) {
 
 // Function to convert a number to its ordinal form and word representation.
 function numberToOrdinal(n) {
-    const ordinals = ["th", "st", "nd", "rd"],
-          exceptions = [11, 12, 13],
-          words = ["Zeroth", "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteenth", "Sixteenth", "Seventeenth", "Eighteenth", "Nineteenth", "Twentieth", "Twenty-first", "Twenty-second", "Twenty-third", "Twenty-fourth", "Twenty-fifth", "Twenty-sixth", "Twenty-seventh", "Twenty-eighth", "Twenty-ninth", "Thirtieth", "Thirty-first"],
+    const englishOrdinals = ["th", "st", "nd", "rd"],
+          englishExceptions = [11, 12, 13],
+          englishWords = ["Zeroth", "First", "Second", "Third", "Fourth", "Fifth", "Sixth", "Seventh", "Eighth", "Ninth", "Tenth", "Eleventh", "Twelfth", "Thirteenth", "Fourteenth", "Fifteenth", "Sixteenth", "Seventeenth", "Eighteenth", "Nineteenth", "Twentieth", "Twenty-first", "Twenty-second", "Twenty-third", "Twenty-fourth", "Twenty-fifth", "Twenty-sixth", "Twenty-seventh", "Twenty-eighth", "Twenty-ninth", "Thirtieth", "Thirty-first"],
+          japaneseWords = ["零番目", "一番目", "二番目", "三番目", "四番目", "五番目", "六番目", "七番目", "八番目", "九番目", "十番目", "十一番目", "十二番目", "十三番目", "十四番目", "十五番目", "十六番目", "十七番目", "十八番目", "十九番目", "二十番目", "二十一番目", "二十二番目", "二十三番目", "二十四番目", "二十五番目", "二十六番目", "二十七番目", "二十八番目", "二十九番目", "三十番目", "三十一番目"],
           v = n % 100,
-          ordinal = exceptions.includes(v) ? ordinals[0] : (ordinals[v % 10] || ordinals[0]),
-          word = words[n];
+          englishOrdinal = englishExceptions.includes(v) ? englishOrdinals[0] : (englishOrdinals[v % 10] || englishOrdinals[0]),
+          englishWord = englishWords[n],
+          japaneseWord = japaneseWords[n];
 
-    return `${n}${ordinal} - ${word}`;
+    return `${n}${englishOrdinal} - ${englishWord} 「${japaneseWord}」`;
 }
+
+

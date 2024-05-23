@@ -30,6 +30,8 @@ body {
 
 /* Text inside the card */
 .card-text {
+    display: flex;
+    width: 280px;
     color: rgba(254, 254, 254, 0.9);
     font-size: 2em; /* Adjust the font size as needed */
     text-align: center;

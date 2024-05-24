@@ -27,12 +27,16 @@ body {
 #content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
 }
 
 
 /* Card Ordinal */
 .card-ordinal {
     height: 50px;
+    width: 350px;
     background-color: #fff;
     border-radius: 0 0 10px 10px;
     display: flex;
@@ -81,11 +85,13 @@ body {
 }
 
 /* Pixel Style */
+/* Apply animation to each pixel */
 .pixel {
     z-index: 1;
     width: 5px;
     height: 5px;
     background-color: rgb(225, 225, 94);
+    animation: fallAnimation 0.5s ease-in-out forwards;
 }
 
 .pixel.broken {
@@ -179,15 +185,18 @@ button:hover {
 
 /* Footer styles */
 footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--primary-color);
     color: var(--text-color);
     font-family: Arial, sans-serif;
-    border-top: 1px solid var(--border-color); /* Optional: add a border at the top */
-    margin-top: 20px; /* Optional: adjust margin */
 }
+
 
 /* Footer link styles */
 footer a {
@@ -210,4 +219,46 @@ footer a:hover {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
     display: none; 
+}
+
+#mainBody {
+    width: 90%;
+    height: 88%;
+    padding: 20px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    align-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#backShape {
+    position: absolute;
+    top: 0;
+    left: 50%; /* Move the element to the horizontal center */
+    transform: translateX(-50%); /* Adjust to center horizontally */
+    background-color: rgba(255, 190, 12, 1);
+    width: 400px;
+    height: 70%;
+    border-radius: 0 0 60px 60px;
+}
+
+
+/* Set up animation for floating effect */
+@keyframes float {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(500px, 50px); }
+    100% { transform: translate(0, 0); }
+}
+
+/* Apply floating animation to the images */
+.pixel:nth-of-type(1) {
+    animation: float 5s ease-in-out infinite;
+}
+
+.pixel:nth-of-type(2) {
+    animation: float 6s ease-in-out infinite;
+}
+
+.pixel:nth-of-type(3) {
+    animation: float 7s ease-in-out infinite;
 }

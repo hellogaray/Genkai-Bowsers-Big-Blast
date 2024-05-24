@@ -1,21 +1,26 @@
 // DOM elements
 const container = document.getElementById("container"),
       sideBar = document.getElementById("sideBar"),
-      card = document.createElement('div');
+      card = document.createElement('div'),
+      block = document.createElement('div');
+      imageDiv = document.getElementById("imageDiv"),
+      jsImg = document.createElement("img");
 
 let bigBlast = blastSelector(), // Generate initial blast position
     currentPosition = 1,        // Initial position
     isPaused = false,           // Game paused state
     isMuted = false,            // Music state
-    themeSong = new Audio('./music/theme.mp3');
+    themeSong = new Audio('./music/theme.mp3'),
+    jsSound = new Audio('./music/ahahah.mp3'),
+    numberCircle = document.getElementsByClassName("number-circle")
+
 
 // Event Listeners
 document.getElementById("nextBtn").addEventListener("click", bombFinder);
 document.addEventListener("keydown", togglePause);  // Listen for 'P' key press
-
-// Initial card setup
-card.classList.add("card");
-container.appendChild(card);
+block.classList.add('block')
+container.appendChild(block)
+jsImg.src = './images/Ahahah.webp';
 
 // Function to handle the bomb finding logic.
 function bombFinder() {
@@ -23,49 +28,59 @@ function bombFinder() {
 
     console.log("Big Blast Position: " + bigBlast);
     console.log("Current Position: " + currentPosition);
-
-    // Clear previous card content
-    container.innerHTML = '';
-
-    // Create and display the current position card
-    cardCreator(currentPosition);
-
-    // Check if the current position matches the blast position
-    if (currentPosition === bigBlast) {
+   
+    updateCardOrdinal(currentPosition)
+    
+    if (currentPosition >= bigBlast) {
         console.log("You died!");
 
-        // Reset the bigBlast position
-        bigBlast = blastSelector();
-        document.getElementById('nextBtn').disabled = true;  // Disable the button
+        block.querySelectorAll('.pixel').forEach(pixel => pixel.classList.add('broken'));
+        block.style.pointerEvents = 'none';
+        block.style.cursor = 'default';
+        block.textContent = 'Broken!';
+        
+         // Reset the bigBlast position
+         bigBlast = blastSelector();
+         document.getElementById('nextBtn').disabled = true;  // Disable the button
     } else {
-        currentPosition += 1;  // Increment the position
+        currentPosition++;
+
+        const pixels = block.querySelectorAll('.pixel:not(.broken)');
+        const breakPixelCount = Math.ceil(pixels.length / 10);
         console.log("You're alive");
+        for (let i = 0; i < breakPixelCount; i++) {
+            const randomPixelIndex = Math.floor(Math.random() * pixels.length);
+            pixels[randomPixelIndex].classList.add('broken');   
+        }
     }
 }
 
 // Function to randomly generate a blast position between 1 and 31.
 function blastSelector() {
-    return Math.floor(Math.random() * 31) + 1;
+    return Math.floor(Math.random() * 31) + 2;
 }
 
-// Function to create and display a card with the current position.
-function cardCreator(currentPosition) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    
-    const cardText = document.createElement('div');
-    cardText.classList.add('card-text');
-    cardText.textContent = numberToOrdinal(currentPosition);  // Set card text
+// Function to update the ordinal number in card elements
+function updateCardOrdinal(currentPosition) {
+    // Convert number to ordinal
+    var ordinal = numberToOrdinal(currentPosition);
 
-    card.appendChild(cardText);
+    // Get all elements with the class name "card-ordinal"
+    let cardOrdinalElements = document.getElementsByClassName("card-ordinal");
 
-    // Create and append the circular number element
-    const numberCircle = document.createElement('div');
-    numberCircle.classList.add('number-circle');
-    numberCircle.textContent = currentPosition;
-    card.appendChild(numberCircle);
+    // Update the text content of each element
+    Array.from(cardOrdinalElements).forEach(element => {
+        element.textContent = ordinal;
+    });
+}
 
-    container.appendChild(card);
+// Function to create and display a block of pixels.
+function blockCreator() {
+    for (let i = 0; i < 1600; i++) {
+        const pixel = document.createElement('div');
+        pixel.classList.add('pixel');
+        block.appendChild(pixel);
+    }
 }
 
 // Function to convert a number to its ordinal form.
@@ -82,14 +97,28 @@ function togglePause(event) {
     if (event.key.toLowerCase() === 'p') {
         isPaused = !isPaused;
         isMuted = !isMuted;
-        toggleMusic()
+        toggleMusic();
         console.log(isPaused ? "Game paused" : "Game resumed");
+        if (isPaused) {
+            jsSound.play();
+            overlay.style.display = 'block'; // Display the overlay
+            document.querySelector('#nextBtn').textContent = 'GAME IS PAUSED';
+        } else {
+            jsSound.pause();
+            overlay.style.display = 'none'; // Hide the overlay
+            document.querySelector('#nextBtn').textContent = '次 (つぎ)';
+        }
     } else if (event.key.toLowerCase() === 'm') {
-        toggleMusic()
+        toggleMusic();
     } else if (event.key.toLowerCase() === 'r') {
-        restartGame()
+        restartGame();
     }
 }
+
+// Create overlay element
+var overlay = document.createElement('div');
+overlay.classList.add('overlay'); // Add the 'overlay' class to the overlay element
+document.body.appendChild(overlay);
 
 // Function to toggle the music state.
 function toggleMusic() {
@@ -107,5 +136,7 @@ function restartGame() {
     location.reload();
 }
 
-themeSong.loop = true
-themeSong.play()
+blockCreator();
+themeSong.loop = true;
+themeSong.play();
+

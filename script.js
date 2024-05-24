@@ -2,24 +2,24 @@
 const container = document.getElementById("container"),
       sideBar = document.getElementById("sideBar"),
       card = document.createElement('div'),
-      block = document.createElement('div');
+      block = document.createElement('div'),  // Create block element
       imageDiv = document.getElementById("imageDiv"),
       jsImg = document.createElement("img");
 
+// Variables
 let bigBlast = blastSelector(), // Generate initial blast position
     currentPosition = 1,        // Initial position
-    isPaused = false,           // Game paused state
-    isMuted = false,            // Music state
+    isPaused = false,            // Game paused state
+    isMuted = false,             // Music state
     themeSong = new Audio('./music/theme.mp3'),
     jsSound = new Audio('./music/ahahah.mp3'),
-    numberCircle = document.getElementsByClassName("number-circle")
-
+    numberCircle = document.getElementsByClassName("number-circle");
 
 // Event Listeners
 document.getElementById("nextBtn").addEventListener("click", bombFinder);
 document.addEventListener("keydown", togglePause);  // Listen for 'P' key press
-block.classList.add('block')
-container.appendChild(block)
+block.classList.add('block');  // Add 'block' class to the block element
+container.appendChild(block);
 jsImg.src = './images/Ahahah.webp';
 
 // Function to handle the bomb finding logic.
@@ -29,28 +29,33 @@ function bombFinder() {
     console.log("Big Blast Position: " + bigBlast);
     console.log("Current Position: " + currentPosition);
    
-    updateCardOrdinal(currentPosition)
+    updateCardOrdinal(currentPosition);
     
     if (currentPosition >= bigBlast) {
         console.log("You died!");
 
+        // Display broken block
         block.querySelectorAll('.pixel').forEach(pixel => pixel.classList.add('broken'));
         block.style.pointerEvents = 'none';
         block.style.cursor = 'default';
         block.textContent = 'Broken!';
         
-         // Reset the bigBlast position
-         bigBlast = blastSelector();
-         document.getElementById('nextBtn').disabled = true;  // Disable the button
+        // Reset the bigBlast position
+        bigBlast = blastSelector();
+        document.getElementById('nextBtn').disabled = true;  // Disable the button
     } else {
         currentPosition++;
 
+        // Break some pixels
         const pixels = block.querySelectorAll('.pixel:not(.broken)');
         const breakPixelCount = Math.ceil(pixels.length / 10);
         console.log("You're alive");
         for (let i = 0; i < breakPixelCount; i++) {
             const randomPixelIndex = Math.floor(Math.random() * pixels.length);
-            pixels[randomPixelIndex].classList.add('broken');   
+            pixels[randomPixelIndex].style.animation = 'float 3s ease-out';
+            setTimeout(() => {
+                pixels[randomPixelIndex].classList.add('broken');
+            }, 3000);
         }
     }
 }
@@ -139,4 +144,3 @@ function restartGame() {
 blockCreator();
 themeSong.loop = true;
 themeSong.play();
-

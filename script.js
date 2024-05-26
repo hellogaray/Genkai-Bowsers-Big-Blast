@@ -13,6 +13,7 @@ let bigBlast = blastSelector(), // Generate initial blast position
     isMuted = false,             // Music state
     themeSong = new Audio('./music/theme.mp3'),
     jsSound = new Audio('./music/ahahah.mp3'),
+    blockHitSound = new Audio('./music/block_hit.mp3'),
     numberCircle = document.getElementsByClassName("number-circle");
 
 // Event Listeners
@@ -50,6 +51,7 @@ function bombFinder() {
         const pixels = block.querySelectorAll('.pixel:not(.broken)');
         const breakPixelCount = Math.ceil(pixels.length / 10);
         console.log("You're alive");
+        blockHitSound.play();
         for (let i = 0; i < breakPixelCount; i++) {
             const randomPixelIndex = Math.floor(Math.random() * pixels.length);
             pixels[randomPixelIndex].style.animation = 'float 3s ease-out';

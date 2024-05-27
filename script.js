@@ -1,3 +1,4 @@
+
 // DOM elements
 const container = document.getElementById("container"),
       sideBar = document.getElementById("sideBar"),
@@ -37,11 +38,9 @@ function bombFinder() {
         console.log("You died!");
 
         // Display game over screen
-        
         showGameOverScreen();
         
         // Reset the bigBlast position
-        bigBlast = blastSelector();
         themeSong.pause();
         marioDies.play();
         document.getElementById('nextBtn').disabled = true;  // Disable the button
@@ -58,11 +57,13 @@ function bombFinder() {
     }
 }
 
-// Function to show game over screen
+// Inside the showGameOverScreen() function
 function showGameOverScreen() {
     const gameOverScreen = document.getElementById('gameOverScreen');
-    gameOverScreen.style.display = 'block';
+    gameOverScreen.style.display = 'flex';
+    setTimeout(restartGame, 5000);
 }
+
 
 // Function to restart the game
 function restartGame() {
@@ -72,12 +73,7 @@ function restartGame() {
 
     // Reset game state
     currentPosition = 0;
-    // Additional reset steps if needed...
-
-    // Start the game again
-    startGame();
 }
-
 
 // Function to add drop animation to pixels.
 function dropAnimation(pixels, breakPixelCount) {
@@ -93,7 +89,7 @@ function dropAnimation(pixels, breakPixelCount) {
 
 // Function to randomly generate a blast position between 1 and 31.
 function blastSelector() {
-    return Math.floor(Math.random() * 31) + 6;
+    return Math.floor(Math.random() * 26) + 5;
 }
 
 // Function to update the ordinal number in card elements
@@ -148,7 +144,6 @@ function blockCreator() {
         block.appendChild(pixel);
     }
 }
-
 
 // Function to convert a number to its ordinal form.
 function numberToOrdinal(n) {
@@ -206,4 +201,5 @@ function restartGame() {
 blockCreator();
 themeSong.loop = true;
 themeSong.play();
+
 

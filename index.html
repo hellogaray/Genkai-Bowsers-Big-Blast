@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="./misc/favicon.ico" rel="icon" type="image/x-icon">
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <div id="backShape"></div>
@@ -27,7 +30,7 @@
         <main id="content">
             <section id="container" aria-label="Drawing area"></section>
             <div class="card-ordinal"></div>
-            <button id="nextBtn">次 (つぎ)</button>
+            <button id="nextBtn">NEXT</button>
         </main>
     </div>
 
@@ -37,13 +40,12 @@
     </footer>
 
     <div id="gameOverScreen">
-        <img src="./images/bowser.gif">
-        <div id="gameOverMessage">GAME OVER</div>
-        <div id="tryAgainButton" onclick="restartGame()">Try Again</div>
+        <img src="./images/explosion.gif"  id="tryAgainButton" onclick="restartGame()"/>
     </div>
     
 
     <!-- Script -->
+    
     <script src="script.js"></script>
 </body>
 </html>

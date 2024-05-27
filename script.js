@@ -1,4 +1,3 @@
-
 // DOM elements
 const container = document.getElementById("container"),
       sideBar = document.getElementById("sideBar"),
@@ -90,16 +89,6 @@ function showGameOverScreen() {
       setTimeout(shoot, 0);
       setTimeout(shoot, 100);
       setTimeout(shoot, 200);
-}
-
-// Function to restart the game
-function restartGame() {
-    // Hide game over screen
-    const gameOverScreen = document.getElementById('gameOverScreen');
-    gameOverScreen.style.display = 'none';
-
-    // Reset game state
-    currentPosition = 0;
 }
 
 // Function to add drop animation to pixels.
@@ -203,11 +192,6 @@ function togglePause(event) {
         restartGame();
     }
 }
-
-// Create overlay element
-var overlay = document.createElement('div');
-overlay.classList.add('overlay'); // Add the 'overlay' class to the overlay element
-document.body.appendChild(overlay);
 
 // Function to toggle the music state.
 function toggleMusic() {

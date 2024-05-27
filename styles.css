@@ -1,4 +1,4 @@
-/* Define CSS custom properties */
+/* Define CSS custom properties for easier theme management */
 :root {
     --grid-cols: 1;
     --grid-rows: 1;
@@ -9,8 +9,7 @@
     --container-border: #d1d1d1;
 }
 
-
-/* Body styles */
+/* Body styles to center content and set background properties */
 body {
     margin: 0;
     display: flex;
@@ -21,12 +20,12 @@ body {
     background-color: var(--primary-color);
     color: var(--text-color);
     font-family: Arial, sans-serif;
-    background-image: url(./images/bg.jpg);
-    background-position: bottom;
-    background-color: rgb(107, 126, 254);
+    background-image: url(./images/bg.jpg); /* Background image */
+    background-position: bottom; /* Position background image */
+    background-color: rgb(107, 126, 254); /* Fallback background color */
 }
 
-/* Main container */
+/* Main container styles to center children elements */
 #content {
     display: flex;
     flex-direction: column;
@@ -35,23 +34,21 @@ body {
     align-items: center;
 }
 
-
-/* Card Ordinal */
+/* Card Ordinal styles */
 .card-ordinal {
     font-family: 'Press Start 2P', cursive;
     height: 50px;
     width: 350px;
     background-color: #fff;
-    border-radius: 0 0 10px 10px;
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.5em;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-
 }
 
-/* Pixel Block */
+/* Pixel Block styles for grid layout and animations */
 .block {
     z-index: 1;
     display: grid;
@@ -63,7 +60,7 @@ body {
     justify-content: center;
     align-content: center;
     background: rgb(239, 29, 140);
-    border-radius: 10px 10px 0 0;
+    border-radius: 10px 10px 0 0; /* Rounded top corners */
     height: 500px;
     width: 350px;
     place-items: center;
@@ -72,12 +69,13 @@ body {
     overflow: hidden;
 }
 
+/* Animated block background */
 .block::before {
     position: absolute;
     content: '';
     width: 50%;
     height: 180%;
-    background-color:rgba(250, 225, 116);
+    background-color: rgba(250, 225, 116);
     transform: rotate(45deg);
     animation: animate 2s linear infinite;
 }
@@ -89,17 +87,11 @@ body {
     background: rgb(239, 29, 140);
 }
 
-/* Pixel Style */
+/* Pixel styles for individual blocks */
 .pixel {
     z-index: 1;
-
-    /* Individual Pixel Look */
-    /* width: 5px;
-    height: 5px; */
-
-    /* Full Image Look */
-    width: 6px;
-    height: 6px;
+    width: 6px; /* Adjust width for pixel effect */
+    height: 6px; /* Adjust height for pixel effect */
 }
 
 .pixel.broken {
@@ -115,7 +107,7 @@ body {
     z-index: 1; 
 }
 
-/* Card  Animation*/
+/* Animation for the block */
 @keyframes animate {
     from {
         transform: rotate(0deg);
@@ -136,15 +128,14 @@ body {
     left: 5px;
     color: rgb(206, 46, 128);
     padding: 0 0 0 30px;
-    transition: width 0.3s ease-in-out, 
-                background-color 0.3s ease-in-out, 
-                color 0.3s ease-in-out, padding 0.3s ease-in-out;
+    transition: width 0.3s ease-in-out, background-color 0.3s ease-in-out, color 0.3s ease-in-out, padding 0.3s ease-in-out;
     width: 20px;
     height: 30px;
     overflow: hidden;
     font-size: 14px;
 }
 
+/* Sidebar hover effect */
 #sideBar:hover {
     top: 0;
     left: 0;
@@ -156,6 +147,7 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
+/* Help icon padding inside sidebar */
 #helpIcon {
     padding-left: 30px;
     padding-right: 30px;
@@ -206,10 +198,9 @@ footer {
     font-family: Arial, sans-serif;
 }
 
-
 /* Footer link styles */
 footer a {
-    margin: 0 10px; /* Optional: adjust margin between links */
+    margin: 0 10px; /* Adjust margin between links */
     color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s ease;
@@ -219,6 +210,7 @@ footer a:hover {
     color: #ffffff; /* Change color on hover */
 }
 
+/* Overlay styles for modal background */
 .overlay {
     position: fixed;
     top: 0;
@@ -230,6 +222,7 @@ footer a:hover {
     display: none; 
 }
 
+/* Main body content container */
 #mainBody {
     width: 90%;
     height: 88%;
@@ -240,6 +233,7 @@ footer a:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Background shape behind main content */
 #backShape {
     position: absolute;
     top: 0;
@@ -251,12 +245,13 @@ footer a:hover {
     border-radius: 0 0 60px 60px;
 }
 
-/* Set up animation for floating effect */
+/* Animation for floating effect */
 @keyframes float {
     0% { transform: translate(0, 0); }
     100% { transform: translate(0, 500px); }
 }
 
+/* Game over screen styles */
 #gameOverScreen {
     flex-direction: column;
     position: fixed;
@@ -276,13 +271,15 @@ footer a:hover {
     height: 650px;
 }
 
-#marioImg{
+/* Mario image inside game over screen */
+#marioImg {
     width: 300px;
     height: 300px;
     justify-content: center;
     align-items: center;
 }
 
+/* Game over message styles */
 #gameOverMessage {
     padding: 10px;
     font-family: 'Press Start 2P', cursive;
@@ -291,6 +288,7 @@ footer a:hover {
     margin-bottom: 20px;
 }
 
+/* Try again button styles */
 #tryAgainButton {
     background-color: #ffcc00;
     color: #000;
@@ -306,4 +304,3 @@ footer a:hover {
 #tryAgainButton:hover {
     background-color: #ffd700;
 }
-

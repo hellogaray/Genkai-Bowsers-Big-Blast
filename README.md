@@ -18,26 +18,31 @@ Welcome to Bowser's Big Blast! Inspired by Bowser's Big Blast game from Mario Pa
 
 ## Description
 
-Through the use of cards and a randomly generated number before the big blast. This game was created to be used in English classes as an aide for learning ordinal numbers (1st, 2nd, 3rd, etc).
+Bowser's Big Blast is an educational game designed to aid in learning ordinal numbers (1st, 2nd, 3rd, etc.) through interactive gameplay. Players click to advance their position, trying to avoid the randomly placed "big blast."
 
 ## Features
 
-- Simple and intuitive gameplay.
-- Randomized explosion chance for added suspense.
-- Responsive design for seamless gameplay on any device.
-- Engaging sound effects and animations.
+- **Simple and intuitive gameplay**: Easy to understand and play.
+- **Randomized explosion chance**: Adds suspense and unpredictability.
+- **Responsive design**: Enjoy seamless gameplay on any device.
+- **Engaging sound effects and animations**: Immersive and enjoyable experience.
 
 ## How to Play
 
-1. Click the "Push Plunger" button to start the game.
-2. Each click increases the chances of Bowser exploding.
-3. If Bowser explodes, the game ends, and you'll see how many tries it took.
-4. Click the plunger again to start a new game and try your luck!
+1. Click the "NEXT" button to advance your position.
+2. The game increases tension as you approach the randomly set "big blast" position.
+3. If you reach or exceed the "big blast" position, the game ends with an explosion.
+4. Click the "TRY AGAIN?" button on the game over screen to restart.
+
+## Controls
+
+- **P**: Pause the game and stop the music.
+- **M**: Toggle the music on and off.
+- **R**: Restart the game.
 
 ## Installation
 
 No installation is required to play Bowser's Big Blast! Simply open the provided HTML file in your web browser, and you're ready to go.
-
 
 ## Original Version
 <div align="center">
@@ -48,4 +53,4 @@ No installation is required to play Bowser's Big Blast! Simply open the provided
 <div align="center">
   <img src="./images/final.png" alt="Final Version" width="400">
 </div>
-The images above show the original and final versions of the Bowser's Big Blast. The original version uses the console to get the inut from the game and the new version has it's own UI to get input and show the results.
+The images above show the original and final versions of the Bowser's Big Blast. The original version has a very basic UI and plays the game without any effects, sounds, or UI. The Final version has an updated UI, music, sound effects, animations, and teacher's control.

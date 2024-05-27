@@ -14,6 +14,7 @@ let bigBlast = blastSelector(), // Generate initial blast position
     themeSong = new Audio('./music/theme.mp3'),
     jsSound = new Audio('./music/ahahah.mp3'),
     blockHitSound = new Audio('./music/block_hit.mp3'),
+    marioDies = new Audio('./music/smb_mariodie.wav'),
     numberCircle = document.getElementsByClassName("number-circle");
 
 // Event Listeners
@@ -35,14 +36,14 @@ function bombFinder() {
     if (currentPosition >= bigBlast) {
         console.log("You died!");
 
-        // Display broken block
-        block.querySelectorAll('.pixel').forEach(pixel => pixel.classList.add('broken'));
-        block.style.pointerEvents = 'none';
-        block.style.cursor = 'default';
-        block.textContent = 'Broken!';
+        // Display game over screen
+        
+        showGameOverScreen();
         
         // Reset the bigBlast position
         bigBlast = blastSelector();
+        themeSong.pause();
+        marioDies.play();
         document.getElementById('nextBtn').disabled = true;  // Disable the button
     } else {
         currentPosition++;
@@ -50,21 +51,49 @@ function bombFinder() {
         // Break some pixels
         const pixels = block.querySelectorAll('.pixel:not(.broken)');
         const breakPixelCount = Math.ceil(pixels.length / 10);
+        dropAnimation(pixels, breakPixelCount)
         console.log("You're alive");
         blockHitSound.play();
-        for (let i = 0; i < breakPixelCount; i++) {
-            const randomPixelIndex = Math.floor(Math.random() * pixels.length);
-            pixels[randomPixelIndex].style.animation = 'float 3s ease-out';
-            setTimeout(() => {
-                pixels[randomPixelIndex].classList.add('broken');
-            }, 3000);
-        }
+
+    }
+}
+
+// Function to show game over screen
+function showGameOverScreen() {
+    const gameOverScreen = document.getElementById('gameOverScreen');
+    gameOverScreen.style.display = 'block';
+}
+
+// Function to restart the game
+function restartGame() {
+    // Hide game over screen
+    const gameOverScreen = document.getElementById('gameOverScreen');
+    gameOverScreen.style.display = 'none';
+
+    // Reset game state
+    currentPosition = 0;
+    // Additional reset steps if needed...
+
+    // Start the game again
+    startGame();
+}
+
+
+// Function to add drop animation to pixels.
+function dropAnimation(pixels, breakPixelCount) {
+    for (let i = 0; i < breakPixelCount; i++) {
+        const randomPixelIndex = Math.floor(Math.random() * pixels.length);
+        pixels[randomPixelIndex].style.animation = 'float 3s ease-out';
+        setTimeout(() => {
+            pixels[randomPixelIndex].style.backgroundColor = '';
+            pixels[randomPixelIndex].classList.add('broken');
+        }, 2000);
     }
 }
 
 // Function to randomly generate a blast position between 1 and 31.
 function blastSelector() {
-    return Math.floor(Math.random() * 31) + 2;
+    return Math.floor(Math.random() * 31) + 6;
 }
 
 // Function to update the ordinal number in card elements
@@ -81,14 +110,45 @@ function updateCardOrdinal(currentPosition) {
     });
 }
 
+// Define the Mario coin block pattern (example)
+const coinBlockPattern = [
+    ['#000000', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#000000', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#000000', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ebb208', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#000000', '#000000', '#000000', '#000000', '#ff5622', '#ff5622', '#000000', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#000000', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#000000', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#000000', '#000000', '#ebb208', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#000000', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#ff5622', '#000000', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#000000', '#000000', '#000000', '#000000', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#000000', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#000000', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#000000', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ff5622', '#ff5622', '#000000', '#ebb208', '#ebb208', '#ebb208', '#000000', '#ebb208', '#000000'],
+    ['#ff5622', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#ebb208', '#000000'],
+    ['#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000', '#000000']
+];
+
+// Scale pattern to match 40x40 grid
+const scaledPattern = [];
+for (let i = 0; i < 40; i++) {
+    for (let j = 0; j < 40; j++) {
+        let color = coinBlockPattern[Math.floor(i / 2.5)][Math.floor(j / 2.5)];
+        scaledPattern.push(color);
+    }
+}
+
 // Function to create and display a block of pixels.
 function blockCreator() {
     for (let i = 0; i < 1600; i++) {
         const pixel = document.createElement('div');
         pixel.classList.add('pixel');
+        pixel.style.backgroundColor = scaledPattern[i];  // Set pixel color from pattern
         block.appendChild(pixel);
     }
 }
+
 
 // Function to convert a number to its ordinal form.
 function numberToOrdinal(n) {
@@ -146,3 +206,4 @@ function restartGame() {
 blockCreator();
 themeSong.loop = true;
 themeSong.play();
+

@@ -40,12 +40,14 @@
     </footer>
 
     <div id="gameOverScreen">
-        <img src="./images/explosion.gif"  id="tryAgainButton" onclick="restartGame()"/>
+        <img src="./images/3d.gif" id="marioImg">
+        <div id="gameOverMessage">GAME OVER</div>
+        <div id="tryAgainButton" onclick="restartGame()">TRY AGAIN?</div>
     </div>
     
 
     <!-- Script -->
-    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

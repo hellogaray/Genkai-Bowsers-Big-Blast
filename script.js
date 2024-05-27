@@ -61,9 +61,36 @@ function bombFinder() {
 function showGameOverScreen() {
     const gameOverScreen = document.getElementById('gameOverScreen');
     gameOverScreen.style.display = 'flex';
-    setTimeout(restartGame, 5000);
-}
 
+    var defaults = {
+        spread: 360,
+        ticks: 50,
+        gravity: 0,
+        decay: 0.94,
+        startVelocity: 30,
+        colors: ['000000', 'ebb208', 'ff5622']
+      };
+      
+      function shoot() {
+        confetti({
+          ...defaults,
+          particleCount: 100,
+          scalar: 1.2,
+          shapes: ['star']
+        });
+      
+        confetti({
+          ...defaults,
+          particleCount: 100,
+          scalar: 1.2,
+          shapes: ['circle']
+        });
+      }
+      
+      setTimeout(shoot, 0);
+      setTimeout(shoot, 100);
+      setTimeout(shoot, 200);
+}
 
 // Function to restart the game
 function restartGame() {

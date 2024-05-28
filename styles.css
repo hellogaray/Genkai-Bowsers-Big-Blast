@@ -34,22 +34,6 @@ body {
     align-items: center;
 }
 
-/* Card Ordinal styles */
-.card-ordinal {
-    font-family: 'Press Start 2P', cursive;
-    height: 3.125rem;
-    width: 40vw;
-    max-width: 40vh;
-    min-width: 15rem; 
-    background-color: #fff;
-    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5rem;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
-}
-
 /* Pixel Block styles for grid layout and animations */
 .block {
     z-index: 1;
@@ -63,15 +47,14 @@ body {
     align-content: center;
     background: rgb(239, 29, 140);
     border-radius: 10px 10px 0 0;
-    height: 50vw;
-    max-height: 60vh;
+    height: 50svw;
+    max-height: 55vh;
     min-height: 20rem; 
     width: 40vw;
     max-width: 40vh;
     min-width: 15rem; 
     place-items: center;
     position: relative;
-    cursor: pointer;
     overflow: hidden;
 }
 
@@ -111,6 +94,22 @@ body {
     font-size: 2rem; 
     text-align: center;
     z-index: 1; 
+}
+
+/* Card Ordinal styles */
+.card-ordinal {
+    font-family: 'Press Start 2P', cursive;
+    height: 4rem;
+    width: 40vw;
+    max-width: 40vh;
+    min-width: 15rem; 
+    background-color: #fff;
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
 /* Animation for the block */
@@ -218,22 +217,10 @@ footer a:hover {
     color: #ffffff; /* Change color on hover */
 }
 
-/* Overlay styles for modal background */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    display: none; 
-}
-
 /* Main body content container */
 #mainBody {
     width: 90%;
-    height: 88%;
+    height: 90%;
     padding: 20px;
     position: absolute;
     background: rgba(255, 255, 255, 0.9);

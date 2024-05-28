@@ -22,7 +22,6 @@ document.getElementById("nextBtn").addEventListener("click", bombFinder);
 document.addEventListener("keydown", togglePause);  // Listen for 'P' key press
 block.classList.add('block');  // Add 'block' class to the block element
 container.appendChild(block);
-jsImg.src = './images/Ahahah.webp';
 
 // Function to handle the bomb finding logic.
 function bombFinder() {
@@ -52,7 +51,6 @@ function bombFinder() {
         dropAnimation(pixels, breakPixelCount)
         console.log("You're alive");
         blockHitSound.play();
-
     }
 }
 
@@ -178,12 +176,11 @@ function togglePause(event) {
         toggleMusic();
         console.log(isPaused ? "Game paused" : "Game resumed");
         if (isPaused) {
+            themeSong.pause();
             jsSound.play();
-            overlay.style.display = 'block'; // Display the overlay
             document.querySelector('#nextBtn').textContent = 'GAME IS PAUSED';
         } else {
             jsSound.pause();
-            overlay.style.display = 'none'; // Hide the overlay
             document.querySelector('#nextBtn').textContent = '次 (つぎ)';
         }
     } else if (event.key.toLowerCase() === 'm') {
